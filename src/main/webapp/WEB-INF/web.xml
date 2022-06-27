@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>realProject</display-name>
+	<welcome-file-list>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>INIT_PARAM</param-name>
+		<param-value>web.xml에 저장한 초기화 매개변수</param-value>
+	</context-param>
+
+
+	<!-- 데이터 접속 정보를 컨텍스트 초기화 파라미터로 등록 -->
+	<context-param>
+		<param-name>MariaDriver</param-name>
+		<param-value>org.mariadb.jdbc.Driver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>MariaURL</param-name>
+		<param-value>jdbc:mariadb://localhost:3306/project1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>MariaId</param-name>
+		<param-value>2ho0</param-value>
+	</context-param>
+	<context-param>
+		<param-name>MariaPwd</param-name>
+		<param-value>1234</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>SetCharEncoding</filter-name>
+		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SetCharEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>idCheck</servlet-name>
+		<servlet-class>controller.IdCheck</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>idCheck</servlet-name>
+		<url-pattern>/idCheck.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>regist</servlet-name>
+		<servlet-class>controller.registController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>regist</servlet-name>
+		<url-pattern>/regist.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>recommend</servlet-name>
+		<servlet-class>controller.recommend</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>recommend</servlet-name>
+		<url-pattern>/recommend.do</url-pattern>
+	</servlet-mapping>
+</web-app>
