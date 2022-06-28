@@ -62,7 +62,7 @@ input[type="submit"] {
 			</div>
 			 <br /> <br /> <br /> <br />
 			<div>
-				<form method="post" action="" onsubmit="return validateForm(this);">
+				<form method="post" action="./login.do" onsubmit="return validateForm(this);">
 					<table style="margin-left:auto;margin-right:auto;">
 						<tr>
 							<td><input type="text" name="idInput" placeholder="아이디를 입력"
@@ -72,6 +72,11 @@ input[type="submit"] {
 						</tr>
 					</table>
 				</form>
+				<br /><br />
+				<div>
+					아이디가 없으시다면?
+					<a href="./membership.jsp"><button type=button class="btn btn-primary">회원가입</button></a>
+				</div>
 			</div>
 		</div>
 	</div>

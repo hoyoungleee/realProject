@@ -19,16 +19,21 @@ public class recommend extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		
-		String userID = (String) req.getAttribute("userID");
-		String interest = req.getParameter("interst");
+		String userID = req.getParameter("userID");
+		String interest = req.getParameter("interest");
+		
+		System.out.println("넘어온 userID="+userID);
+		System.out.println("넘어온 interest="+interest);
 		
 		dto.setUserID(userID);
 		dto.setInterest(interest);
 		
+		
 		int interestResult = dao.interestInsert(dto);
 		
+		dao.close();
 		if(interestResult == 1) {
-			JSFunction.alertLocation(resp, "이용해주셔서 감사합니다. 로그인을 진행해주세요", interest);
+			resp.sendRedirect("./welcome.jsp");
 		}
 		
 		

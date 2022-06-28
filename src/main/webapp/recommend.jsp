@@ -28,9 +28,9 @@ footer {
 	<jsp:include page="layout/header.jsp"/>
 </header>
 <div class="container-fluid">
-  <h1>회원가입을 진심으로 축하드립니다!</h1>
   <p>시작 전, 관심있는 영화의 카테고리를 알려주세요!</p>
-    <form action="/recommend.do">
+    <form action="<%= request.getContextPath() %>/recommend.do" method="POST">
+    <input type="hidden" name="userID" value="${requestScope.userID }"   />
     <div class="form-check">
       <input type="radio" class="form-check-input" id="radio1" name="interest" value="horror">
       <label class="form-check-label" for="radio1">무서운영화</label>
@@ -41,11 +41,11 @@ footer {
     </div>
 	<div class="form-check">
       <input type="radio" class="form-check-input" id="radio3" name="interest" value="criminal">
-      <label class="form-check-label" for="radio2">범죄영화</label>
+      <label class="form-check-label" for="radio3">범죄영화</label>
     </div>
     <div class="form-check">
       <input type="radio" class="form-check-input" id="radio4" name="interest" value="comedy">
-      <label class="form-check-label" for="radio2">웃긴영화</label>
+      <label class="form-check-label" for="radio4">웃긴영화</label>
     </div>
     <button type="submit" class="btn btn-primary mt-3">취향기억하기</button>
   </form>

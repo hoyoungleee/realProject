@@ -43,7 +43,7 @@
 <br />
 
 	    <span class="title">
-	        <h1 >좋아하는 영화 유튜버 총집합!</h1>
+	        <h1 >좋아하는 영화 후기 총집합!</h1>
 	    </span>
 	    <div id="button2">
 	    <br />

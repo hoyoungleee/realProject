@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
+</style>
     <div class="container-fluid">
-<div class="row border border-dark border-bottom-0 border-start-0 border-end-0 pt-2">
+<div class="row border border-dark border-bottom-0 border-start-0 border-end-0 pt-2 footer">
 <!--    <hr /> -->
     <div class="col-3">
           <h2>Media World</h2>

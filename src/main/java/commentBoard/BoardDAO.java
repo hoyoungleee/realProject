@@ -1,20 +1,20 @@
-package realProject;
+package commentBoard;
 
 import common.DBConnPool;
 
-
-
-public class MemberDAO extends DBConnPool{
+public class BoardDAO extends DBConnPool{
 
 	//부모클래스의 기본생성자 호출을 통해 DB를 연결한다.
-	public MemberDAO() {
+	public BoardDAO() {
 		super();
 		System.out.println("DB연결 호출");
 	}
 	
+
+		
 	public int checkId(String unCheckID) { // 유저가 입력한 값을 매개변수로 한다.
 		int checkCount= 0;
-		String query = "SELECT * FROM member ";
+		String query = "SELECT * FROM commentBoard ";
 		query += " WHERE userID = ?"; // 입력한 값이 테이블에 있는지 확인
 		try {
 			psmt = con.prepareStatement(query);
@@ -41,10 +41,10 @@ public class MemberDAO extends DBConnPool{
 	
 	
 
-	public int memberInsert(MemberDTO dto) {
+	public int commentInsert(BoardDTO dto) {
 		
 		//회원 가입을 위한 쿼리문 작성
-		String query = "INSERT INTO member (userID, userPassword1, userName, userEmail, registDate)"
+		String query = "INSERT INTO commentBoard (userID, userPassword1, userName, userEmail, registDate)"
 				+ " values(?,?,?,?,NOW())";
 		
 		try {
@@ -62,10 +62,10 @@ public class MemberDAO extends DBConnPool{
 		return 0;
 		
 	}
-	public int interestInsert(MemberDTO dto) {
+	public int interestInsert(BoardDTO dto) {
 		
 		//회원 가입을 위한 쿼리문 작성
-		String query = "INSERT INTO interest (userID, interest)"
+		String query = "INSERT INTO commentBoard (userID, interest)"
 				+ " values(?,?)";
 		
 		try {
@@ -82,12 +82,12 @@ public class MemberDAO extends DBConnPool{
 		
 	}
 	
-	public MemberDTO login(String uid, String upass) {
+	public BoardDTO login(String uid, String upass) {
 			
 		//DTO객체 생성
-		MemberDTO dto = new MemberDTO();
+		BoardDTO dto = new BoardDTO();
 		//회원 로그인을 위한 쿼리문 작성
-		String query = "SELECT * FROM member WHERE userID=? AND userPassword1=?";
+		String query = "SELECT * FROM commentBoard WHERE userID=? AND userPassword1=?";
 		
 		try {
 			//쿼리문 실행을 위한 prepared객체 생성 및 인파라미터 설정
@@ -111,9 +111,9 @@ public class MemberDAO extends DBConnPool{
 		return dto;
 	}
 	
-	public int deleteMember(MemberDTO dto) {
+	public int deleteMember(BoardDTO dto) {
 		int deleteCount =0;
-		String query = "DELETE FROM member WHERE userID = ?";
+		String query = "DELETE FROM commentBoard WHERE userID = ?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getUserID());
@@ -127,7 +127,7 @@ public class MemberDAO extends DBConnPool{
 	}
 	public int deleteInterest(MemberDTO dto) {
 		int deleteCount =0;
-		String query = "DELETE FROM interest WHERE userID = ?";
+		String query = "DELETE FROM commentBoard WHERE userID = ?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getUserID());
@@ -139,10 +139,10 @@ public class MemberDAO extends DBConnPool{
 		return deleteCount;
 	}
 	
-	public int memberEdit(MemberDTO dto) {
+	public int memberEdit(BoardDTO dto) {
 		
 		//회원 정보수정을 위한 쿼리문 작성
-		String query = "UPDATE member SET userName = ? , userPassword1 = ? , userEmail = ? WHERE userID = ? ";
+		String query = "UPDATE commentBoard SET userName = ? , userPassword1 = ? , userEmail = ? WHERE userID = ? ";
 		
 		try {
 			//쿼리문 실행을 위한 prepared객체 생성 및 인파라미터 설정
@@ -160,10 +160,10 @@ public class MemberDAO extends DBConnPool{
 		
 	}
 	
-	public int interestEdit(MemberDTO dto) {
+	public int interestEdit(BoardDTO dto) {
 		
 		//회원 정보수정을 위한 쿼리문 작성
-		String query = "UPDATE interest SET interest = ? WHERE userID = ? ";
+		String query = "UPDATE commentBoard SET interest = ? WHERE userID = ? ";
 		
 		try {
 			//쿼리문 실행을 위한 prepared객체 생성 및 인파라미터 설정
@@ -178,4 +178,6 @@ public class MemberDAO extends DBConnPool{
 		return 0;
 		
 	}
+
+
 }

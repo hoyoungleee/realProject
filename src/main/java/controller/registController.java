@@ -14,10 +14,10 @@ import utils.JSFunction;
 
 public class registController extends HttpServlet {
 	
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		req.getRequestDispatcher("../membership.jsp").forward(req, resp);
-//	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect("./membership.jsp");
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class registController extends HttpServlet {
 			dto.setUserEmail(userEmail);
 			
 			int registResult = dao.memberInsert(dto);
-			
+			dao.close();
 			if(registResult == 1) {
 				req.setAttribute("userID",userID);
 				req.getRequestDispatcher("./recommend.jsp").forward(req, resp);
