@@ -33,7 +33,7 @@ footer {
 </style>
 </head>
 <body>
-    <h2>파일 첨부형 게시판 - 목록 보기(List)</h2>
+    <h2>고객의 소리 - 건의게시판</h2>
 
     <!-- 검색 폼 -->
     <form method="get">  
@@ -89,14 +89,14 @@ footer {
             </td>
             <td align="left">   
 	            <!-- 제목. 클릭시 상세보기 페이지로 이동함. -->
-                <a href="../mvcboard/view.do?idx=${ row.idx }">${ row.title }</a> 
+                <a href="./view.do?idx=${ row.idx }">${ row.title }</a> 
             </td> 
             <td>${ row.userID }</td> 
             <td>${ row.postdate }</td> 
             <td> 
             <!-- 첨부파일이 있을때만 다운로드 링크를 출력함. -->
             <c:if test="${ not empty row.ofile }">
-                <a href="../mvcboard/download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&idx=${ row.idx }">[Down]</a>
+                <a href="./download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&idx=${ row.idx }">[Down]</a>
             </c:if>
             </td>
         </tr>

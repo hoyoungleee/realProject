@@ -134,15 +134,12 @@ public class QuestionDAO extends DBConnPool {
             //조회된 레코드가 있을때 DTO객체에 각 컬럼값을 저장한다.
             if (rs.next()) { 
                 dto.setIdx(rs.getString(1));
-                dto.setUserID(idx);
+                dto.setUserID(rs.getString(2));
                 dto.setTitle(rs.getString(3));
                 dto.setContent(rs.getString(4));
                 dto.setPostdate(rs.getDate(5));
                 dto.setOfile(rs.getString(6));
                 dto.setSfile(rs.getString(7));
-                dto.setDowncount(rs.getInt(8));
-                dto.setPass(rs.getString(9));
-                dto.setVisitcount(rs.getInt(10));
             }
         }
         catch (Exception e) {

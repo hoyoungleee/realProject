@@ -176,6 +176,21 @@
 		<servlet-name>QuestionList</servlet-name>
 		<url-pattern>/QuestionList.do</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>view</servlet-name>
+		<servlet-class>admin.QuestionViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>view</servlet-name>
+		<url-pattern>/view.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>download</servlet-name>
+		<servlet-class>controller.DownloadController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>download</servlet-name>
+		<url-pattern>/download.do</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

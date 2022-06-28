@@ -20,6 +20,9 @@ body {
 div{
 	text-align: center;
 }
+table{
+	border: white;
+}
 footer {
 	color: white;
 }
