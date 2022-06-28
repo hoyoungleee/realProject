@@ -110,8 +110,8 @@ footer {
             <td>
                 ${ map.pagingImg }
             </td>
-            <td width="100"><button type="button"
-                onclick="location.href='./delete.do';">건의함 비우기</button></td>
+            <td width="100"><button type="button" class="btn btn-primary"
+                onclick="location.href='./questionDelete.do';">건의함 <br />비우기</button></td>
         </tr>
     </table>
 </body>

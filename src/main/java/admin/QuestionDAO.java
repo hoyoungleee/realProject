@@ -257,6 +257,23 @@ public class QuestionDAO extends DBConnPool {
         return result;
     }
     
+    public int deleteQuestion() {
+    	
+    	try {
+    		String query = "DELETE FROM QuestionBoard";
+    		
+    		psmt = con.prepareStatement(query);
+    		
+    		int result = psmt.executeUpdate();
+    		return result;
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return 0;
+    	
+    }
+    
 }
 
 

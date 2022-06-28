@@ -192,5 +192,13 @@
 		<servlet-name>download</servlet-name>
 		<url-pattern>/download.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>questionDelete</servlet-name>
+		<servlet-class>admin.QuestionDeleteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>questionDelete</servlet-name>
+		<url-pattern>/questionDelete.do</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
