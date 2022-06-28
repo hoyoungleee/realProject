@@ -47,7 +47,7 @@ nav {
 				data-bs-toggle="dropdown">마이페이지</a>
 				<ul class="dropdown-menu">
 				<% if(userID.equals("admin")){ %>
-					<li><a class="dropdown-item" href="./memberList.do">관리자 페이지</a></li>
+					<li><a class="dropdown-item" href="./QuestionList.do">관리자 페이지</a></li>
 				</ul>
 				<%} else{%>
 					<li><a class="dropdown-item" href="./question.jsp">건의하기</a></li>

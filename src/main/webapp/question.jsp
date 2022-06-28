@@ -49,7 +49,7 @@ footer {
 <header>
 	<jsp:include page="layout/header.jsp"/>
 </header>
-<h2>파일 첨부형 게시판 - 글쓰기(Write)</h2>
+<h2>여러분의 의견이 사이트를 발전시킵니다 - 건의 게시판</h2>
 <!--  
 	파일을 첨부하기 위한 작성폼은 아래 2가지 조건이 지켜져야 한다. 
 	1. 전송방식(method)은 post여야 한다. 
@@ -59,12 +59,12 @@ footer {
 	객체를 사용해서 폼값을 받아야 한다. 
 -->
 <form name="writeFrm" method="post" enctype="multipart/form-data"
-      action="../mvcboard/write.do" onsubmit="return validateForm(this);">
+      action="./QuestionWrite.do" onsubmit="return validateForm(this);">
 <table border="1" width="90%">
     <tr>
-        <td>작성자</td>
+        <td></td>
         <td>
-            <input type="text" name="name" style="width:150px;" />
+            <input type="hid-den" name="userID" value="${sessionScope.userID }" style="width:150px;" />
         </td>
     </tr>
     <tr>

@@ -57,7 +57,7 @@ public class QuestionController extends HttpServlet {
         //파일을 제외한 나머지 폼값을 받는다. request객체가 아닌 mr을 통해 받는다. 
         //DTO에 폼값을 저장한다. 
         QuestionDTO dto = new QuestionDTO(); 
-        dto.setName(mr.getParameter("name"));
+        dto.setUserID(mr.getParameter("userID"));
         dto.setTitle(mr.getParameter("title"));
         dto.setContent(mr.getParameter("content"));
 

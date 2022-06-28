@@ -1,4 +1,4 @@
-package model2.mvcboard;
+package admin;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import utils.BoardPage;
 
 //게시판 목록 요청 처리를 위한 서블릿 클래스
-public class ListController extends HttpServlet {
+public class QuestionListController extends HttpServlet {
 	
 	//목록의 경우 메뉴를 클릭한 후 이동하므로 get방식으로 요청하게된다.
     @Override
@@ -22,7 +22,7 @@ public class ListController extends HttpServlet {
             throws ServletException, IOException {
     	
     	//커넥션풀을 이용한 DB연결을 위해 DAO객체 생성
-    	MVCBoardDAO dao = new MVCBoardDAO();
+    	QuestionDAO dao = new QuestionDAO();
 
     	//파라미터 및 View로 전달할 데이터를 저장하기 위해 Map컬렉션을 생성
         Map<String, Object> map = new HashMap<String, Object>();
@@ -67,14 +67,14 @@ public class ListController extends HttpServlet {
         /* 페이지 처리 end */
         
         //현제 페이지에 출력할 게시물을 얻어옴.
-        List<MVCBoardDTO> boardLists = dao.selectListPage(map);
+        List<QuestionDTO> boardLists = dao.selectListPage(map);
         //커넥션풀에 자원 반납
         dao.close();  
 
         //페이지 번호를 생성하기 위한 유틸리티 클래스의 메서드 호출
         //모델1 방식의 게시판에서 사용했던 메서드를 그대로 사용한다.
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
-                blockPage, pageNum, "../mvcboard/list.do");  
+                blockPage, pageNum, "./QuestionList.do");  
         //View로 전달할 데이터를 Map컬렉션에 저장함.
         //페이지번호
         map.put("pagingImg", pagingImg);
@@ -89,6 +89,6 @@ public class ListController extends HttpServlet {
         req.setAttribute("boardLists", boardLists);
         req.setAttribute("map", map);
         //View로 포워드를 걸어준다. 
-        req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
+        req.getRequestDispatcher("./questionList.jsp").forward(req, resp);
     }
 }

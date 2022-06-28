@@ -1,8 +1,8 @@
 package admin;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import common.DBConnPool;
 
@@ -39,47 +39,47 @@ public class QuestionDAO extends DBConnPool {
     }
 	
 	/*
-	모델1 방식에서는 board테이블 및 BoardDTO클래스를 사용했지만
-	모델2 방식에서는 mvcboard테이블 및 MVCBoardDTO클래스를 사용하므로 
-	해당 코드만 수정하면 된다. 
+	모델 1 방식에서는 board테이블 및 BoardDTO클래스를 사용했지만
+	모델 2 방식에서는 mvcboard테이블 및 MVCBoardDTO클래스를 사용하므로
+	해당 코드만 수정하면 된다.
 	
 	모델2 방식의 게시판 목록에 대한 페이징 처리 쿼리문 실행
 	 */
-    public List<QuestionDTO> selectListPage(Map<String, Object> map) {
-    	
-        List<QuestionDTO> board = new ArrayList<QuestionDTO>();  
-        
-        String query = "SELECT * FROM ( "
-        			+ "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                    + "        SELECT * FROM QuestionBoard ";
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField")
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
-        }        
-        query += "      	ORDER BY idx DESC "
-               + "     ) Tb "
-               + " ) "
-               + " WHERE rNum BETWEEN ? AND ?";
+	public List<QuestionDTO> selectListPage(Map<String, Object> map){
+		List<QuestionDTO> board = new Vector<QuestionDTO>();
 
+		String query = " " 
+					+ " SELECT * FROM QuestionBoard ";
+
+		if(map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField")
+					+ " LIKE '%" + map.get("searchWord")+ "%' "; 
+		}
+//		query += "	ORDER BY idx DESC LIMIT ?, ?";
+		System.out.println("쿼리문=" + query);
+
+//		StringBuffer sb = new StringBuffer();
+//		sb.append(" SELECT * FROM ");
+//		sb.append(" 	(select tb.*, rownum rNum from ");
+//		sb.append(" 		(select * from board order by num desc) tb) ");
+//		sb.append(" where rNum>=11 and rNum<=20;");
+//		sb.toString();
         try {
             psmt = con.prepareStatement(query);
-            psmt.setString(1, map.get("start").toString());
-            psmt.setString(2, map.get("end").toString());
+//            psmt.setString(1, map.get("start").toString());
+//            psmt.setString(2, map.get("end").toString());
             rs = psmt.executeQuery();
             while (rs.next()) {
             	QuestionDTO dto = new QuestionDTO();
                 
                 //테이블이 변경되었으므로 저장하는 부분은 수정이 필요함..
-                dto.setIdx(rs.getString(1));
+            	dto.setIdx(rs.getString(1));
                 dto.setUserID(rs.getString(2));
                 dto.setTitle(rs.getString(3));
                 dto.setContent(rs.getString(4));
                 dto.setPostdate(rs.getDate(5));
                 dto.setOfile(rs.getString(6));
                 dto.setSfile(rs.getString(7));
-                dto.setDowncount(rs.getInt(8));
-                dto.setPass(rs.getString(9));
-                dto.setVisitcount(rs.getInt(10));
 
                 board.add(dto);
             }
@@ -101,9 +101,9 @@ public class QuestionDAO extends DBConnPool {
         	sfile : 서버에 저장된 파일명
         	 */
             String query = "INSERT INTO QuestionBoard ( "
-                         + "  userID, title, content, ofile, sfile) "
+                         + "  userID, title, content, ofile, sfile, postdate) "
                          + " VALUES ( "
-                         + " ?,?,?,?,?,?)";
+                         + " ?,?,?,?,?,NOW())";
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getUserID());
             psmt.setString(2, dto.getTitle());
