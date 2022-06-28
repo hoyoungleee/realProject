@@ -49,7 +49,22 @@
 		<filter-name>SetCharEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<context-param>
+		<param-name>POSTS_PER_PAGE</param-name>
+		<param-value>10</param-value>
+	</context-param>
+	<!-- 한 블럭당 출력할 번호의 갯수 -->
+	<context-param>
+		<param-name>PAGES_PER_BLOCK</param-name>
+		<param-value>5</param-value>
+	</context-param>
+	
+		<!-- 파일 업로드 제한용량 : 10메가 -->
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>10240000</param-value>
+	</context-param>
+	
 	<servlet>
 		<servlet-name>idCheck</servlet-name>
 		<servlet-class>controller.IdCheck</servlet-class>
@@ -119,6 +134,47 @@
 	<servlet-mapping>
 		<servlet-name>memberEdit</servlet-name>
 		<url-pattern>/memberEdit.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>commentWrite</servlet-name>
+		<servlet-class>commentBoard.WriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>commentWrite</servlet-name>
+		<url-pattern>/commentWrite.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>memberList</servlet-name>
+		<servlet-class>admin.MemberController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>memberList</servlet-name>
+		<url-pattern>/memberList.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>commentList</servlet-name>
+		<servlet-class>admin.MemberController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>commentList</servlet-name>
+		<url-pattern>/commentList.do</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>QuestionWrite</servlet-name>
+		<servlet-class>controller.QuestionController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QuestionWrite</servlet-name>
+		<url-pattern>/QuestionWrite.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>QuestionList</servlet-name>
+		<servlet-class>admin.QuestionListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QuestionList</servlet-name>
+		<url-pattern>/QuestionList.do</url-pattern>
 	</servlet-mapping>
 	
 	

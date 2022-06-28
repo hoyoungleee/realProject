@@ -23,6 +23,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="css/indexCss.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <title>Media World</title>
 <style>
 body {
@@ -53,6 +54,7 @@ footer {
 	color: black;
 }
 </style>
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -91,20 +93,24 @@ footer {
 				<!-- Modal Header -->
 
 				<div class="row">
-					<div class="col-12">
+					<div class="col-1"></div>
+					<div class="col-11">
 						<h4 class="modal-title">클레멘타인</h4>
 					</div>
 				</div>
 				<div class="row">
+					<div class="col-1">
+					</div>
 					<div class="col-4">
 						<img alt="영화포스터" src="./image/클레멘타인.jpeg"
 							style="max-width: 200px;">
 					</div>
-					<div class="col-2"></div>
-					<div class="col-6">처참한 완성도와 무리한 마케팅 덕분에 컬트적인 인기가 있다. 최야성 제작,
+					<div class="col-1"></div>
+					<div class="col-5">처참한 완성도와 무리한 마케팅 덕분에 컬트적인 인기가 있다. 최야성 제작,
 						김두영 감독의 전작 주글래 살래처럼 필름의 질이나 촬영 기술부터가 수준이 떨어져서, 대부분의 장면은 기껏해야 일일
 						드라마 수준의 영상을 보여줄 뿐이다. 캐릭터, 개연성, 연출, 전개, 설정까지 하나도 빠지지 않고 처참한 완성도를
 						자랑한다.</div>
+					<div class="col-1"></div>
 				</div>
 				<hr />
 				<% Object id = session.getAttribute("userID");
@@ -112,40 +118,41 @@ footer {
 				if (userID != null) { %>
 				<!-- Modal body -->
 				<div class="modal-body">
-					<div>
-						<form method="post" action="./write.do" onclick="return validate(this);">
+					<div class="row">
+						<form id="wrtFrm" >
 							작성할 내용(최대 40자까지 가능): &nbsp; <input type="text" name="comment"
 								id="comment" maxlength="40" size="40" /> 
-							<span class="form-check">
+							<div class="form-check">
 								<input type="radio" class="form-check-input" id="radio1"
 									name="score" value="1.0"> <label
 									class="form-check-label" for="radio1">평점 1</label>
-							</span>
-							<span class="form-check">
+							</div>
+							<div class="form-check">
 								<input type="radio" class="form-check-input" id="radio2"
 									name="score" value="2.0"> <label
 									class="form-check-label" for="radio2">평점 2</label>
-							</span>
-							<span class="form-check">
+							</div>
+							<div class="form-check">
 								<input type="radio" class="form-check-input" id="radio3"
 									name="score" value="3.0"> <label
 									class="form-check-label" for="radio3">평점 3</label>
-							</span>
-							<span class="form-check">
+							</div>
+							<div class="form-check">
 								<input type="radio" class="form-check-input" id="radio4"
 									name="score" value="4.0"> <label
 									class="form-check-label" for="radio4">평점 4</label>
-							</span>
-							<span class="form-check">
+							</div>
+							<div class="form-check">
 								<input type="radio" class="form-check-input" id="radio5"
 									name="score" value="5.0"> <label
 									class="form-check-label" for="radio5">평점 5</label>
-							</span>
-							<input type="submit"
-								value="후기작성" class="btn btn-primary" />
+							</div>
+							<input id="formbutton" type = "button" onclick = "return writeComment();" value = "후기작성" />
 						</form>
 					</div>
+					<div >
 					<%@ include file="./board/list.jsp"%>
+					</div>
 				</div>
 				<%} %>
 				<!-- Modal footer -->
@@ -473,5 +480,36 @@ footer {
 	<footer>
 		<jsp:include page="layout/footer.jsp" />
 	</footer>
+	<script>
+function writeComment(){
+	
+	var fm = document.getElementById('wrtFrm');
+		if(fm.comment.value == ""){
+			alert("댓글내용을 입력하세요");
+			fm.comment.focus();
+			return false;
+		}
+		if(fm.score.value == ""){
+			alert("내용을 입력하세요");
+			fm.score.focus();
+			return false;
+		}
+	var queryString = $('#wrtFrm').serialize();
+	$.ajax({
+	    url: './commentWrite.do',
+	    type: 'post',
+	    data: {"폼 데이터 변수 이름": queryString},
+	    success: function (data) {
+		    	const reFresh = document.getElementByID("formbutton");
+		    	reFresh.addEventListener("click", function() {
+
+					
+		    	});
+	        }
+	});
+
+}
+</script>
+	
 </body>
 </html>

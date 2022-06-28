@@ -44,16 +44,15 @@ public class BoardDAO extends DBConnPool{
 	public int commentInsert(BoardDTO dto) {
 		
 		//회원 가입을 위한 쿼리문 작성
-		String query = "INSERT INTO commentBoard (userID, userPassword1, userName, userEmail, registDate)"
-				+ " values(?,?,?,?,NOW())";
+		String query = "INSERT INTO commentBoard (userID, contents, movieScore, postDate)"
+				+ " values(?,?,?,NOW())";
 		
 		try {
 			//쿼리문 실행을 위한 prepared객체 생성 및 인파라미터 설정
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getUserID());
-			psmt.setString(2, dto.getUserPassword1());
-			psmt.setString(3, dto.getUserName());
-			psmt.setString(4, dto.getUserEmail());
+			psmt.setString(2, dto.getContents());
+			psmt.setString(3, dto.getMovieScore());
 			return psmt.executeUpdate();
 		}
 		catch(Exception e) {
